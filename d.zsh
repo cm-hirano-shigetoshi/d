@@ -16,6 +16,6 @@ function d() {
 zle -N d
 
 function chpwd() {
-    date '+%Y-%m-%dT%H:%M:%S%z' | builtin pwd >> "${ZSH_COMMAND_D_FILE}"
+    date '+%Y-%m-%dT%H:%M:%S%z' | paste - <(builtin pwd) >> "${ZSH_COMMAND_D_FILE}"
 }
 
