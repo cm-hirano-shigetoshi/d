@@ -6,11 +6,13 @@ mkdir -p "$ZSH_COMMAND_D_BASE_DIR"
 
 function d() {
     out=$(${ZSH_COMMAND_D_TOOLDIR}/rust/d/target/release/d ${ZSH_COMMAND_D_FILE} ${ZSH_COMMAND_D_TOOLDIR})
-    #out=$(python ${ZSH_COMMAND_D_TOOLDIR}/main.py)
     if [[ -n $out ]]; then
-        BUFFER="cd $out"
-        CURSOR="${#BUFFER}"
-        zle accept-line
+        if [[ -n "$WIDGET" ]]; then
+            BUFFER="$LBUFFER $out $RBUFFER"
+            CURSOR="${#BUFFER}"
+        else
+            cd "$out"
+        fi
     fi
 }
 zle -N d
