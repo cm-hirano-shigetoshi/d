@@ -13,8 +13,8 @@ fn main() {
     env::set_var("SERVER_PORT", utils::find_free_port().unwrap().to_string());
 
     // serverを起動する
-    //let mut server = InternalServer::new();
-    //server.start_async();
+    let mut server = InternalServer::new();
+    server.start_async();
 
     // fzfのプロセスを開始
     let mut fzf = Fzf::new();

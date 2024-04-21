@@ -23,14 +23,20 @@ impl InternalServer {
                         .unwrap()
                         .parent()
                         .unwrap()
+                        .parent()
+                        .unwrap()
+                        .parent()
+                        .unwrap()
                         .join("python/server.py"),
                 )
                 .spawn()
                 .expect("failed to start server.py");
+            self.child = Some(_child);
         } else {
             println!("Server is already running.");
         }
     }
+
     pub fn stop(&mut self) {
         if let Some(mut child) = self.child.take() {
             child.kill().expect("Command failed to kill the process");
