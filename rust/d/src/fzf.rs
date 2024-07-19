@@ -14,7 +14,7 @@ impl Fzf {
         let output = Command::new("sh")
             .arg("-c")
             .arg(
-                format!("tac {} | bash {}/bash/global.sh | fzf --listen {} --ansi --bind 'alt-j:execute-silent:curl \"http://localhost:{}?bind=alt-j\"'",
+                format!("tac {} | bash {}/bash/global.sh | fzf --listen {} --ansi --wrap --bind 'alt-j:execute-silent:curl \"http://localhost:{}?bind=alt-j\"'",
                         path,
                         tooldir,
                         env::var("FZF_PORT").unwrap(),
